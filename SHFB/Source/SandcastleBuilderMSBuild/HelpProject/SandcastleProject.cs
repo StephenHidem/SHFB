@@ -80,6 +80,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -95,15 +96,15 @@ using Microsoft.Build.Evaluation;
 using Sandcastle.Core;
 using Sandcastle.Core.BuildAssembler;
 using Sandcastle.Core.BuildAssembler.BuildComponent;
-using Sandcastle.Core.ConceptualContent;
-using Sandcastle.Core.Reflection;
-using Sandcastle.Core.PlugIn;
-using Sandcastle.Core.Project;
-using Sandcastle.Core.PresentationStyle.Transformation;
-
 using Sandcastle.Core.BuildEngine;
-using SandcastleBuilder.MSBuild.Design;
+using Sandcastle.Core.ConceptualContent;
+using Sandcastle.Core.PlugIn;
+using Sandcastle.Core.PresentationStyle.Transformation;
+using Sandcastle.Core.Project;
+using Sandcastle.Core.Reflection;
+
 using SandcastleBuilder.MSBuild.BuildEngine;
+using SandcastleBuilder.MSBuild.Design;
 
 namespace SandcastleBuilder.MSBuild.HelpProject
 {
@@ -1792,6 +1793,21 @@ namespace SandcastleBuilder.MSBuild.HelpProject
                 { "MSHELP2", "HtmlHelp1" }
             };
 
+#if DEBUG && WAIT_FOR_DEBUGGER
+            while(!Debugger.IsAttached)
+            {
+#if NET9_0_OR_GREATER
+                Console.WriteLine("DEBUG MODE: Waiting for debugger to attach (process ID: {0})",
+                        Environment.ProcessId);
+#else
+                Console.WriteLine("DEBUG MODE: Waiting for debugger to attach (process ID: {0})",
+                        Process.GetCurrentProcess().Id);
+#endif
+                System.Threading.Thread.Sleep(1000);
+            }
+
+            Debugger.Break();
+#endif
             try
             {
                 // Ensure that we use the correct build engine for the project.  Version 14.0 or later is required.

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+	<metadata>
+		<id>SmallEarthTech.SHFB</id>
+		<version>2025.11.1</version>
+		<title>Sandcastle Help File Builder - Test</title>
+		<authors>Eric Woodruff, Stephen Hidem</authors>
+		<owners>Eric Woodruff</owners>
+		<readme>ReadMe.md</readme>
+		<license type="expression">MS-PL</license>
+		<projectUrl>https://github.com/SmallEarthTech/SHFB</projectUrl>
+		<icon>SHFB.png</icon>
+		<iconUrl>https://raw.githubusercontent.com/EWSoftware/SHFB/master/NuGet/SHFB.png</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>This package allows you to deploy the Sandcastle Help File Builder tools inside of a project to build help files without installing the tools manually such as on a build server.  Some limitations apply.  You will also need to install the reflection data set packages that you need for your projects.</description>
+		<copyright>Eric Woodruff (c) 2006-2025</copyright>
+		<tags>SHFB documentation sandcastle help XML comments</tags>
+		<!-- Note that we do not add dependencies on the reflection data set packages.  The idea here is that you
+				 only need to install the packages that you actually need. -->
+	</metadata>
+	<files>
+		<file src="..\SHFB\Deploy\**\*" target="tools" exclude="..\SHFB\Deploy\Data\**\*;..\SHFB\Deploy\Extras\**\*;..\SHFB\Deploy\Help\**\*;..\SHFB\Deploy\Schemas\**\*;..\SHFB\Deploy\Snippets\**\*;..\SHFB\Deploy\Tools\**\*;..\SHFB\Deploy\**\.gitignore" />
+		<file src="..\SHFB\Deploy\Tools\HelpLibraryManagerLauncher.exe*" target="tools\Tools" />
+		<file src="ReadMe.md" target="ReadMe.md" />
+		<file src="SmallEarthTech.SHFB.props" target="build" />
+		<file src="SHFB.png" target="SHFB.png" />
+	</files>
+</package>

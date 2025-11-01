@@ -1,5 +1,7 @@
 # Sandcastle Help File Builder
 
+## This package is intended for testing and build server deployment scenarios.
+
 This package allows you to deploy the Sandcastle Help File Builder tools inside of a project to build help files
 without installing the tools manually such as on a build server.  The `SHFBROOT` environment variable does not
 need to be defined.  The following limitations apply:
